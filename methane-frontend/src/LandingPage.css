@@ -1,0 +1,62 @@
+.landing-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .landing-content {
+    max-width: 600px;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .landing-content h1 {
+    color: #2a3d66;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+  }
+  
+  .landing-content p {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+  }
+  
+  .landing-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+  }
+  
+  .upload-btn {
+    background-color: #007bff;
+  }
+  
+  .upload-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .dashboard-btn {
+    background-color: #28a745;
+  }
+  
+  .dashboard-btn:hover {
+    background-color: #218838;
+  }

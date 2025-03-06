@@ -1,0 +1,33 @@
+.footer {
+    background: #2a3d66;
+    color: white;
+    padding: 10px 0; /* Reduced padding to make the footer height shorter */
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    position: fixed;
+    width: 100%;
+    /* height: 15%; */
+    bottom: 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1px;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 1px;
+  }
+  
+  .footer-link {
+    color: white;
+    transition: color 0.3s;
+  }
+  
+  .footer-link:hover {
+    color: #f8c065;
+  }
