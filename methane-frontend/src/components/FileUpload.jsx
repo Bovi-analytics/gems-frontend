@@ -57,7 +57,7 @@ const FileUpload = () => {
     try {
 	    console.log(`Here is the backend url----${process.env.REACT_APP_BASE_API_URL}`)
       const response = await axios.post(
-        `upload`, // Replace with actual API endpoint
+        `https://gems-backend.bovi-analytics.com/upload`, // Replace with actual API endpoint
         formData,
         {
           headers: {
