@@ -55,6 +55,7 @@ const FileUpload = () => {
 
     setLoading(true);
     try {
+	    console.log(`Here is the backend url----${process.env.REACT_APP_BASE_API_URL}`)
       const response = await axios.post(
         `${process.env.REACT_APP_BASE_API_URL}/upload`, // Replace with actual API endpoint
         formData,
