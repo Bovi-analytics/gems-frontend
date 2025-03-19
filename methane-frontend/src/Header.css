@@ -114,6 +114,7 @@
       text-align: center;
       display: none;
       padding: 15px 0;
+      z-index: 9999;
     }
   
     .nav-links.nav-active {
