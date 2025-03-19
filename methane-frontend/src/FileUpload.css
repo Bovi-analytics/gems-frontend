@@ -117,18 +117,60 @@ input[type="file"] {
   background-color: #c82333;
 }
 
-/* Upload Button - Stays Fixed at the Bottom */
+
+/* Upload Button */
 .upload-button {
-  padding: 10px 20px;
-  background-color: #007bff;
+  margin-top: 5%;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   width: 100%;
   position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* Hover Effect */
+.upload-button:hover {
+  background: linear-gradient(135deg, #0056b3, #003f7f);
+  transform: scale(1.05);
+}
+
+/* Click Animation */
+.upload-button:active {
+  transform: scale(0.95);
+}
+
+/* Loading Effect */
+.upload-button.loading::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  border-top-color: white;
+  border-radius: 50%;
+  position: absolute;
+  right: 15px;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
 
 .upload-button:disabled {
   background-color: #ccc;

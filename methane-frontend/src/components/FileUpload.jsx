@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../FileUpload.css'; // Import the CSS file for styling
+import { BiLoaderCircle } from "react-icons/bi";
+import { ImUpload3 } from "react-icons/im";
+import { FiDelete } from "react-icons/fi";
+
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
@@ -17,11 +20,11 @@ const FileUpload = () => {
   // Add new email to the list
   const addEmail = () => {
     if (newEmail.trim() === '') {
-      toast.error("Email cannot be empty!");
+      alert("Email cannot be empty!");
       return;
     }
     if (!validateEmail(newEmail)) {
-      toast.error("Invalid email format!");
+      alert("Invalid email format!");
       return;
     }
     setEmails([...emails, newEmail.trim()]); // Add email to the array
@@ -67,10 +70,8 @@ const FileUpload = () => {
         }
       );
       console.log(response.data);
-      toast.success('File uploaded successfully!');
       alert("File uploaded successfully!");
     } catch (error) {
-      toast.error('Upload failed!');
       alert("Upload failed!");
     } finally {
       setLoading(false);
@@ -100,12 +101,14 @@ const FileUpload = () => {
         {emails.map((email, index) => (
           <div key={index} className="email-item">
             <span>{email}</span>
-            <button onClick={() => removeEmail(index)} className="remove-email-button">❌</button>
+            <button onClick={() => removeEmail(index)} className="remove-email-button"><FiDelete size="1em"/></button>
           </div>
         ))}
       </div>
 
       <button onClick={handleUpload} disabled={loading} className='upload-button'>
+        {loading && <BiLoaderCircle />}
+        {!loading && <ImUpload3 />}
         {loading ? 'Uploading...' : 'Upload'}
       </button>
     </div>

@@ -7,6 +7,9 @@
     font-family: 'Poppins', sans-serif;
     text-align: center;
     padding: 20px;
+    flex-wrap: wrap;
+    /* margin-bottom: 10%; */
+    align-items: center;
   }
   
   .landing-content {
@@ -15,6 +18,7 @@
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10%;
   }
   
   .landing-content h1 {

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
+// import { FaBars, FaTimes } from "react-icons/fa";
+import { FaCow } from "react-icons/fa6";
+// import { HiX } from "react-icons/hi";
+import { TfiMenuAlt } from "react-icons/tfi";
 import "../Header.css";
-import logo from '../logo.png'; // Adjust the path to your logo.png
+
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -11,14 +14,7 @@ const Header = () => {
     <nav className="header">
       <div className="logo">
         <Link to="/">
-        <img src={logo} alt="Bovi Analytics Logo" className="logo-img" />
-        {/* <img 
-    src={logo} 
-    alt="Bovi Analytics Logo" 
-    className="logo-img" 
-    style={{ width: '50px', height: '50px' }} 
-/> */}
-          Bovi Analytics
+          Bovi-Analytics
         </Link>
       </div>
 
@@ -46,7 +42,8 @@ const Header = () => {
 
       {/* Mobile Menu Button */}
       <div className="menu-icon" onClick={() => setIsMobile(!isMobile)}>
-        {isMobile ? <FaTimes size={28} /> : <FaBars size={28} />}
+        {/* {isMobile ? <FaTimes size={28} /> : <FaBars size={28} />} */}
+        {isMobile ? <FaCow size={28} /> : <TfiMenuAlt size={28} />}
       </div>
     </nav>
   );

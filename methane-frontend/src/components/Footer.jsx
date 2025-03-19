@@ -6,12 +6,12 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p>&copy; 2025 Bovi Analytics. All rights reserved.</p>
+        <p>&copy; 2025 Bovi-Analytics. All rights reserved.</p>
         <div className="footer-links">
-          <a href="https://github.com/your-github-profile" target="_blank" rel="noopener noreferrer" className="footer-link">
+          <a href="https://github.com/Bovi-analytics/gems-backend.git" target="_blank" rel="noopener noreferrer" className="footer-link">
             <FaGithub size={24} />
           </a>
-          <a href="mailto:your-email@example.com" className="footer-link">
+          <a href="mailto:info@bovi-analytics.com" className="footer-link">
             <FaEnvelope size={24} />
           </a>
         </div>
