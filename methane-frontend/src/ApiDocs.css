@@ -1,0 +1,87 @@
+.api-docs-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.api-docs-container h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.api-docs-container h2 {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.2rem;
+}
+
+.api-docs-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.api-docs-container a:hover {
+  text-decoration: underline;
+}
+
+.api-docs-container code {
+  background-color: #f4f4f4;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.token-section {
+  position: relative;
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: start;
+}
+
+.token-section textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-family: monospace;
+  resize: none;
+}
+
+.copy-btn {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 3rem;
+  align-self: stretch;
+}
+
+.copy-btn:hover {
+  background-color: #0056b3;
+}
+
+.btn {
+  margin-top: 1rem;
+  background-color: #28a745;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #218838;
+}
+
+.dev-tip {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-left: 4px solid #007bff;
+  font-size: 0.95rem;
+}
