@@ -3,7 +3,7 @@
     color: white;
     padding: 10px 0; /* Reduced padding to make the footer height shorter */
     text-align: center;
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
     position: fixed;
     width: 100%;
     /* height: 15%; */
