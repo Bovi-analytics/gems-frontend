@@ -51,7 +51,7 @@ const ApiDocs = () => {
       <section>
         <h2>📘 REST API (Swagger)</h2>
         <p>Use the Swagger UI to explore and test API endpoints:</p>
-        <a href="http://localhost:5000/api/v1/swagger" target="_blank" rel="noopener noreferrer">
+        <a href={`${process.env.REACT_APP_AUTH0_AUDIENCE}/api/v1/swagger`} target="_blank" rel="noopener noreferrer">
           Open Swagger Documentation
         </a>
         <div className="dev-tip">
@@ -69,7 +69,7 @@ const ApiDocs = () => {
       <section>
         <h2>🚀 GraphQL API</h2>
         <p>Query structured data using our GraphQL endpoint:</p>
-        <a href="http://localhost:5000/graphql" target="_blank" rel="noopener noreferrer">
+        <a href={`${process.env.REACT_APP_AUTH0_AUDIENCE}/graphql`} target="_blank" rel="noopener noreferrer">
           Go to GraphQL Endpoint
         </a>
         <div className="dev-tip">
