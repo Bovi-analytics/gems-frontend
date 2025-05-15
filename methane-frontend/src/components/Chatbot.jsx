@@ -1,6 +1,7 @@
-// // Chatbot.jsx
 // import React, { useState, useRef, useEffect } from "react";
-// import "../Chatbot.css"; // move the CSS to a separate file
+// import { marked } from "marked";
+// import DOMPurify from "dompurify";
+// import "../Chatbot.css";
 
 // const Chatbot = () => {
 //   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +40,7 @@
 //         headers: { "Content-Type": "application/json" },
 //         body: JSON.stringify({ message: text }),
 //       });
+
 //       const data = await res.json();
 //       const reply = data.response || "No response from the model.";
 
@@ -50,11 +52,24 @@
 //         [...prev.filter((msg) => msg.sender !== "typing"), { text: "Oops! Something went wrong.", sender: "bot" }]
 //       );
 //     }
+
 //     setThinking(false);
 //   };
 
 //   const handleKeyDown = (e) => {
 //     if (e.key === "Enter") sendMessage();
+//   };
+
+//   const renderMessage = (msg) => {
+//     if (msg.sender === "bot") {
+//       const isSimpleText = !msg.text.includes("**") && !msg.text.includes("```") && !msg.text.includes("- ");
+//       const sanitizedHtml = DOMPurify.sanitize(marked.parse(msg.text));
+//       return isSimpleText
+//         ? msg.text.replace(/\n/g, "<br>") // fallback formatting
+//         : sanitizedHtml;
+//     }
+
+//     return msg.text.replace(/\n/g, "<br>");
 //   };
 
 //   return (
@@ -70,9 +85,11 @@
 
 //           <div className={`chat-messages ${fullscreen ? "fullscreen-messages" : ""}`}>
 //             {messages.map((msg, i) => (
-//               <div key={i} className={`message ${msg.sender}`}>
-//                 {msg.text}
-//               </div>
+//               <div
+//                 key={i}
+//                 className={`message ${msg.sender}`}
+//                 dangerouslySetInnerHTML={{ __html: renderMessage(msg) }}
+//               />
 //             ))}
 //             <div ref={messagesEndRef} />
 //           </div>
@@ -129,7 +146,18 @@ const Chatbot = () => {
     setInput("");
     setThinking(true);
 
-    setMessages((prev) => [...prev, { text: "Bovi is thinking...", sender: "typing" }]);
+    const uniqueId = Date.now();
+    const thinkingMsg = { text: "Bovi-Bot is thinking...", sender: "typing", id: uniqueId };
+    setMessages((prev) => [...prev, thinkingMsg]);
+
+    // After 10s, if still thinking, update message
+    const engineMsgTimeout = setTimeout(() => {
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === uniqueId ? { ...msg, text: "Please wait while I'm starting my engine..." } : msg
+        )
+      );
+    }, 10000);
 
     try {
       const res = await fetch(apiUrl, {
@@ -141,10 +169,14 @@ const Chatbot = () => {
       const data = await res.json();
       const reply = data.response || "No response from the model.";
 
+      clearTimeout(engineMsgTimeout);
+
       setMessages((prev) =>
         [...prev.filter((msg) => msg.sender !== "typing"), { text: reply, sender: "bot" }]
       );
     } catch (error) {
+      clearTimeout(engineMsgTimeout);
+
       setMessages((prev) =>
         [...prev.filter((msg) => msg.sender !== "typing"), { text: "Oops! Something went wrong.", sender: "bot" }]
       );
@@ -162,7 +194,7 @@ const Chatbot = () => {
       const isSimpleText = !msg.text.includes("**") && !msg.text.includes("```") && !msg.text.includes("- ");
       const sanitizedHtml = DOMPurify.sanitize(marked.parse(msg.text));
       return isSimpleText
-        ? msg.text.replace(/\n/g, "<br>") // fallback formatting
+        ? msg.text.replace(/\n/g, "<br>")
         : sanitizedHtml;
     }
 
@@ -176,7 +208,7 @@ const Chatbot = () => {
       {isOpen && (
         <div className={`chat-container ${fullscreen ? "fullscreen" : ""}`}>
           <div className={`chat-header ${fullscreen ? "fullscreen-header" : ""}`}>
-            Ask Bovi
+            Ask Bovi-Bot
             <button onClick={() => setFullscreen(!fullscreen)}>⤢</button>
           </div>
 
@@ -208,4 +240,5 @@ const Chatbot = () => {
 };
 
 export default Chatbot;
+
 
