@@ -6,7 +6,7 @@
     background: #4287f5;
     padding: 15px 30px;
     color: white;
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   }
   
@@ -18,8 +18,8 @@
   }
   
   .logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.7rem;
+    /* font-weight: bold; */
     color: white;
     text-decoration: none;
     white-space: nowrap; /* Ensure the logo text stays on a single line */
@@ -45,7 +45,7 @@
   .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
     transition: 0.3s;
   }
   
@@ -60,6 +60,7 @@
     font-weight: bold;
     text-align: center;
     transition: 0.3s ease-in-out;
+    /* font-size: 1.2rem; */
   }
   
   .signup {
@@ -155,4 +156,8 @@
     text-transform: uppercase;
     user-select: none;
   }
+
+.welcome-text {
+  font-size: 1.2rem;
+}
   

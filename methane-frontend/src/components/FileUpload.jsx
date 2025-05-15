@@ -146,7 +146,7 @@ const FileUpload = () => {
   const [loading, setLoading] = useState(false);
   const [emails, setEmails] = useState([]);
   const [newEmail, setNewEmail] = useState('');
-  const [userRoles, setUserRoles] = useState([]);
+  // const [userRoles, setUserRoles] = useState([]);
   const { isAuthenticated, loginWithRedirect, getAccessTokenSilently } = useAuth0();
 
   // Fetch and decode token to get roles when authenticated
@@ -156,8 +156,8 @@ const FileUpload = () => {
         try {
           const token = await getAccessTokenSilently();
           const decoded = jwtDecode(token);
-          const roles = decoded['https://gems.bovi-analytics.com/roles'] || [];
-          setUserRoles(roles);
+          const roles = decoded[`${process.env.REACT_APP_AUTH0_AUDIENCE}roles`] || [];
+          // setUserRoles(roles);
           console.log('🔑 Roles from token:', roles);
         } catch (error) {
           console.error('Error fetching token or roles:', error);
@@ -197,13 +197,13 @@ const FileUpload = () => {
     setLoading(true);
     try {
       const token = await getAccessTokenSilently();
-      console.log("🔐 Token:", token);
+      // console.log("🔐 Token:", token);
       const formData = new FormData();
       formData.append('file', file);
       formData.append('emails', emails.join(','));
 
       const response = await axios.post(
-        'http://localhost:5000/api/v1/gems/upload',
+        `${process.env.REACT_APP_BASE_API_URL}/api/v1/gems/upload`,
         formData,
         {
           headers: {

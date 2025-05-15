@@ -20,9 +20,9 @@ const Header = () => {
         try {
           const token = await getAccessTokenSilently();
           const decoded = jwtDecode(token);
-          const roles = decoded['https://gems.bovi-analytics.com/roles'] || [];
+          const roles = decoded[`${process.env.REACT_APP_AUTH0_AUDIENCE}roles`] || [];
           setUserRoles(roles);
-          console.log('🔑 Roles from token:', roles);
+          console.log('🔑 Roles from token :) :', roles);
         } catch (error) {
           console.error('Error fetching token or roles:', error);
         }
@@ -41,12 +41,12 @@ const Header = () => {
   }
   // ✅ Moved inside the component
   
-  useEffect(() => {
-    console.log("isLoading:", isLoading);
-    console.log("isAuthenticated:", isAuthenticated);
-    console.log("user:", user);
-    // console.log("getAccessTokenSilently:", getAccessTokenSilently);
-  }, [isLoading, isAuthenticated, user]);
+  // useEffect(() => {
+  //   console.log("isLoading:", isLoading);
+  //   console.log("isAuthenticated:", isAuthenticated);
+  //   console.log("user:", user);
+  //   // console.log("getAccessTokenSilently:", getAccessTokenSilently);
+  // }, [isLoading, isAuthenticated, user]);
 
   if (isLoading) return null;
   

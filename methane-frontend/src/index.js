@@ -8,12 +8,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Auth0Provider
-      domain="dev-1bd3bttgj2px61zz.us.auth0.com"
-      clientId="1PbIi3DXSCR0xRPgXGXaA9cyuPCZSlrF"
+      domain={process.env.REACT_APP_AUTH0_DOMAIN}
+      clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
       authorizationParams={{
         redirect_uri: window.location.origin,
-        audience: 'https://gems.bovi-analytics.com/',
-        scope: 'openid profile email',
+        audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+        scope: process.env.REACT_APP_AUTH0_SCOPE,
       }}
       useRefreshTokens={true}
       cacheLocation="localstorage"

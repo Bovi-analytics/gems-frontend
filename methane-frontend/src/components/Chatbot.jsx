@@ -12,8 +12,8 @@ const Chatbot = () => {
   const messagesEndRef = useRef(null);
 
   const apiUrl = fullscreen
-    ? "http://localhost:5000/api/v1/gems/chat-full-page"
-    : "http://localhost:5000/api/v1/gems/chat";
+    ? `${process.env.REACT_APP_BASE_API_URL}/api/v1/gems/chat-full-page`
+    : `${process.env.REACT_APP_BASE_API_URL}/api/v1/gems/chat`;
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
