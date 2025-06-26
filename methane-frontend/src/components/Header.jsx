@@ -82,6 +82,9 @@ const Header = () => {
           <Link to="/api-docs">API</Link>
         </li>
       )}
+        {/* <li>
+          <Link to="/chat-visual" onClick={() => setIsMobile(false)}>VisualBovi-Bot</Link>
+        </li> */}
         <li>
           <Link to="/upload" onClick={() => setIsMobile(false)}>Upload</Link>
         </li>
