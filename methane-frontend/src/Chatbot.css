@@ -82,7 +82,7 @@ body:has(.chat-container.fullscreen) {
   align-items: center;
 }
 
-.chat-header button {
+.chat-header button.icon-butto {
   position: absolute;
   top: 10px;
   right: 12px;
@@ -171,4 +171,56 @@ body:has(.chat-container.fullscreen) {
     bottom: 15px;
     right: 15px;
   }
+}
+
+
+
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 12px;
+}
+
+.chat-header-icons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px;
+}
+
+
+
+
+
+
+.chatbot-suggest-button {
+  display: inline-block;
+  background: linear-gradient(to right, #2a6bd1, #4287f5);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 12px rgba(66, 135, 245, 0.3);
+  transition: all 0.3s ease;
+}
+
+.chatbot-suggest-button:hover {
+  background: linear-gradient(to right, #1f54aa, #316fd8);
+  box-shadow: 0 6px 18px rgba(42, 107, 209, 0.35);
+  transform: translateY(-1px);
 }
