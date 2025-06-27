@@ -11,7 +11,7 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
 
-  const navigate = useNavigate(); // ✅ Use React Router navigation
+  const navigate = useNavigate(); // ✅ React Router navigation
   const messagesEndRef = useRef(null);
 
   const apiUrl = fullscreen
@@ -25,8 +25,8 @@ const Chatbot = () => {
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setMessages([
-        { text: "Hi! I'm Bovi-Bot. How can I help you today?", sender: "bot" },
-        { type: "visual-switch", sender: "bot" } // render this as a React element
+        { text: "Hi! I'm Bovi-Bot. How can I help you today?", sender: "bot", animated: "first-bot" },
+        { type: "visual-switch", sender: "bot" }
       ]);
     }
   }, [isOpen, messages.length]);
@@ -88,27 +88,28 @@ const Chatbot = () => {
   const renderMessage = (msg) => {
     if (msg.type === "visual-switch") {
       return (
-        `<div class='bot'>
-          <button class='chatbot-suggest-button' onclick='window.location.href="/chat-visual"'>
-            🚀 Switch to Visual Chatbot
-          </button>
-        </div>`
+        <button
+          className="chatbot-suggest-button"
+          onClick={() => navigate("/chat-visual")}
+        >
+          🚀 Switch to Visual Chatbot
+        </button>
       );
     }
 
     if (msg.isHtml) {
-      return msg.text;
+      return <span dangerouslySetInnerHTML={{ __html: msg.text }} />;
     }
 
     if (msg.sender === "bot") {
       const isSimpleText = !msg.text.includes("**") && !msg.text.includes("```") && !msg.text.includes("- ");
       const sanitizedHtml = DOMPurify.sanitize(marked.parse(msg.text));
-      return isSimpleText
-        ? msg.text.replace(/\n/g, "<br>")
-        : sanitizedHtml;
+      return (
+        <span dangerouslySetInnerHTML={{ __html: isSimpleText ? msg.text.replace(/\n/g, "<br>") : sanitizedHtml }} />
+      );
     }
 
-    return msg.text.replace(/\n/g, "<br>");
+    return <span dangerouslySetInnerHTML={{ __html: msg.text.replace(/\n/g, "<br>") }} />;
   };
 
   return (
@@ -135,11 +136,9 @@ const Chatbot = () => {
 
           <div className={`chat-messages ${fullscreen ? "fullscreen-messages" : ""}`}>
             {messages.map((msg, i) => (
-              <div
-                key={i}
-                className={`message ${msg.sender}`}
-                dangerouslySetInnerHTML={{ __html: renderMessage(msg) }}
-              />
+              <div key={i} className={`message ${msg.sender} ${msg.animated || ""}`}>
+                {renderMessage(msg)}
+              </div>
             ))}
             <div ref={messagesEndRef} />
           </div>
