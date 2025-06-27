@@ -25,7 +25,7 @@ const ChatVisual = () => {
 
     const timeoutId = setTimeout(() => {
       setMessages((prev) => [...prev, { type: "bot", text: "⏳ Please wait while I'm starting my engine..." }]);
-    }, 10000);
+    }, 18000);
 
     try {
       const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/v1/gems/chat-visual`, {
@@ -62,7 +62,7 @@ const ChatVisual = () => {
         {messages.map((msg, i) => (
           <div key={i} className={`chat-msg ${msg.type}`}>
             {msg.type === "image" ? (
-              <img src={`http://localhost:5000${msg.url}`} alt="Chart" className="chat-image" />
+              <img src={`${process.env.REACT_APP_BASE_API_URL}${msg.url}`} alt="Chart" className="chat-image" />
             ) : (
               msg.text
             )}
