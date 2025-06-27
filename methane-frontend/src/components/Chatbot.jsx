@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
+import { useNavigate } from "react-router-dom";
 import "../Chatbot.css";
 
 const Chatbot = () => {
@@ -10,6 +11,7 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
 
+  const navigate = useNavigate(); // ✅ Use React Router navigation
   const messagesEndRef = useRef(null);
 
   const apiUrl = fullscreen
@@ -24,11 +26,7 @@ const Chatbot = () => {
     if (isOpen && messages.length === 0) {
       setMessages([
         { text: "Hi! I'm Bovi-Bot. How can I help you today?", sender: "bot" },
-        {
-          text: `<button class='chatbot-suggest-button' onclick='window.location.href="/chat-visual"'>Switch to Visual Chatbot</button>`,
-          sender: "bot",
-          isHtml: true
-        }
+        { type: "visual-switch", sender: "bot" } // render this as a React element
       ]);
     }
   }, [isOpen, messages.length]);
@@ -88,8 +86,18 @@ const Chatbot = () => {
   };
 
   const renderMessage = (msg) => {
+    if (msg.type === "visual-switch") {
+      return (
+        `<div class='bot'>
+          <button class='chatbot-suggest-button' onclick='window.location.href="/chat-visual"'>
+            🚀 Switch to Visual Chatbot
+          </button>
+        </div>`
+      );
+    }
+
     if (msg.isHtml) {
-      return msg.text; // Render raw HTML like button
+      return msg.text;
     }
 
     if (msg.sender === "bot") {
@@ -112,7 +120,7 @@ const Chatbot = () => {
           <div className={`chat-header ${fullscreen ? "fullscreen-header" : ""}`}>
             <span>Ask Bovi-Bot</span>
             <div className="chat-header-icons">
-              <button className="icon-button" title="Open Visual Chat" onClick={() => window.location.href = "/chat-visual"}>
+              <button className="icon-button" title="Open Visual Chat" onClick={() => navigate("/chat-visual")}>
                 📊
               </button>
               <button
@@ -156,4 +164,3 @@ const Chatbot = () => {
 };
 
 export default Chatbot;
-
